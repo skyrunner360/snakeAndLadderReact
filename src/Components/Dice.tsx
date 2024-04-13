@@ -1,14 +1,13 @@
-import React from "react";
-import { useRecoilState } from "recoil";
-import { diceValue } from "../states/DiceStates";
-import { diceRoll, DiceValToIconMap, snakesArr } from "../Utils";
 import { MdRestartAlt } from "react-icons/md";
+import { useRecoilState } from "recoil";
 import {
   currentPlayer,
   gameLogs,
   gameState,
   playerPositions,
 } from "../states/BoardStates";
+import { diceValue } from "../states/DiceStates";
+import { diceRoll, DiceValToIconMap, snakesArr } from "../Utils";
 
 const Dice = () => {
   const [diceVal, setDiceVal] = useRecoilState(diceValue);
@@ -23,7 +22,6 @@ const Dice = () => {
     const isPlayerFree = newVal === 6;
     const currPlayerPos = playerPos[`player${currPlayer}`] + newVal;
     const snakeBite = snakesArr.find((ar) => ar[0] === currPlayerPos);
-    console.log("SnakeBite", snakeBite);
     setDiceVal(newVal);
     setGameLog([
       ...gameLog,
