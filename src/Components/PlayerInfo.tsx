@@ -1,9 +1,9 @@
-import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { gameLogs, playerPositions } from "../states/BoardStates";
+import { MdOutlinePersonPinCircle, MdPersonPinCircle } from "react-icons/md";
 
 const PlayerInfo = () => {
-  const [playerPos, setPlayerPos] = useRecoilState(playerPositions);
+  const playerPos = useRecoilValue(playerPositions);
   const gLogs = useRecoilValue(gameLogs);
   return (
     <div>
@@ -14,8 +14,12 @@ const PlayerInfo = () => {
         ))}
       </div>
       <h3>Player Positions</h3>
-      <p>Player 1 :- {playerPos.player1}</p>
-      <p>Player 2 :- {playerPos.player2}</p>
+      <p className="flex items-center">
+        Player 1 <MdPersonPinCircle size={50} /> :- {playerPos.player1}
+      </p>
+      <p className="flex items-center">
+        Player 2 <MdOutlinePersonPinCircle size={50} /> :- {playerPos.player2}
+      </p>
     </div>
   );
 };
