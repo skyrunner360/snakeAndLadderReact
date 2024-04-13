@@ -23,9 +23,9 @@ const Dice = () => {
     setDiceVal(newVal);
     setGameLog([
       ...gameLog,
-      `Player ${currPlayer} Rolled Dice to ${newVal}`,
-      ...(isPlayerFree ? [`Player ${currPlayer} is Free to Move`] : []),
-      `Player ${newPlayer}'s Turn`,
+      `Player ${currPlayer} Rolled Dice to ${newVal}.`,
+      ...(isPlayerFree ? [`Player ${currPlayer} is Free to Move!`] : []),
+      `Player ${newPlayer}'s Turn.`,
     ]);
     setCurrPlayer(newPlayer);
     setPlayerPos({
