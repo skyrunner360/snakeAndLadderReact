@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { diceValue } from "../states/DiceStates";
-import { diceRoll, DiceValToIconMap } from "../Utils";
+import { diceRoll, DiceValToIconMap, snakesArr } from "../Utils";
 import { MdRestartAlt } from "react-icons/md";
 import {
   currentPlayer,
@@ -21,12 +21,20 @@ const Dice = () => {
     const newVal = diceRoll();
     const newPlayer = currPlayer === 1 ? 2 : 1;
     const isPlayerFree = newVal === 6;
+    const currPlayerPos = playerPos[`player${currPlayer}`] + newVal;
+    const snakeBite = snakesArr.find((ar) => ar[0] === currPlayerPos);
+    console.log("SnakeBite", snakeBite);
     setDiceVal(newVal);
     setGameLog([
       ...gameLog,
       `Player ${currPlayer} Rolled Dice to ${newVal}.`,
       ...(isPlayerFree && !gState[`player${currPlayer}`].move
         ? [`Player ${currPlayer} is Free to Move!`]
+        : []),
+      ...(snakeBite ? [`Player ${currPlayer} was BITTEN by Snake!`] : []),
+      ...(snakeBite ? [`Player ${currPlayer} Moves to ${snakeBite[1]}.`] : []),
+      ...(gState[`player${currPlayer}`].move
+        ? [`Player ${currPlayer} moves to Position ${currPlayerPos}.`]
         : []),
       `Player ${newPlayer}'s Turn.`,
     ]);
@@ -36,13 +44,17 @@ const Dice = () => {
         currPlayer === 1 && isPlayerFree && !gState["player1"].move
           ? 1
           : gState["player1"].move && currPlayer === 1
-          ? playerPos.player1 + newVal
+          ? snakeBite
+            ? snakeBite[1]
+            : playerPos.player1 + newVal
           : playerPos.player1,
       player2:
         currPlayer === 2 && isPlayerFree && !gState["player2"].move
           ? 1
           : gState["player2"].move && currPlayer === 2
-          ? playerPos.player2 + newVal
+          ? snakeBite
+            ? snakeBite[1]
+            : playerPos.player2 + newVal
           : playerPos.player2,
     });
     if (isPlayerFree) {

@@ -29,22 +29,81 @@ const Board = () => {
           </div>
         )}
       </div>
-      <table>
+      <table className="relative">
+        <img
+          src="/Snake_silhouette.svg?url"
+          style={{ position: "absolute", top: 10, left: 20, zIndex: -1 }}
+          height={100}
+          width={200}
+        />
+        <img
+          src="/Snake_silhouette.svg?url"
+          style={{
+            position: "absolute",
+            top: 220,
+            left: 240,
+            zIndex: -1,
+            rotate: "90deg",
+          }}
+          height={60}
+          width={250}
+        />
+        <img
+          src="/Snake_silhouette.svg?url"
+          style={{
+            position: "absolute",
+            top: 115,
+            left: 60,
+            zIndex: -1,
+            rotate: "90deg",
+          }}
+          height={200}
+          width={400}
+        />
+        <img
+          src="/Snake_silhouette.svg?url"
+          style={{
+            position: "absolute",
+            bottom: 5,
+            left: 210,
+            zIndex: -1,
+          }}
+          height={100}
+          width={150}
+        />
         {memoizedValue.reverse().map((i, ind) => {
           return (
             <tr className="p-4" key={ind + +new Date()}>
               {i.map((ij) => {
                 return (
                   <td
-                    className="p-4 border border-blue-400 text-center"
+                    className="p-4 border border-blue-400 text-center relative"
                     key={ij}
                   >
                     {ij}
                     {playerPos.player1 === ij && (
-                      <MdPersonPinCircle size={30} />
+                      <MdPersonPinCircle
+                        size={30}
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          left: 0,
+                          transform: "translate(-50,-50)",
+                          zIndex: 2,
+                        }}
+                      />
                     )}
                     {playerPos.player2 === ij && (
-                      <MdOutlinePersonPinCircle size={30} />
+                      <MdOutlinePersonPinCircle
+                        size={30}
+                        style={{
+                          position: "absolute",
+                          top: 0,
+                          right: 0,
+                          transform: "translate(-50,-50)",
+                          zIndex: 2,
+                        }}
+                      />
                     )}
                   </td>
                 );
