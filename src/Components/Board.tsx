@@ -8,7 +8,7 @@ const Board = () => {
     const arr = Array.from({ length: 100 }, (_, i) => i + 1);
     const newArr = [];
     while (arr.length) newArr.push(arr.splice(0, 10));
-    return newArr;
+    return newArr.reverse();
   }, []);
 
   const playerPos = useRecoilValue(playerPositions);
