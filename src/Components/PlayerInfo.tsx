@@ -13,27 +13,33 @@ const PlayerInfo = () => {
 
   return (
     <div>
-      <h3 className="font-bold text-2xl">Game Logs</h3>
-      <div
-        className="border border-blue-500 overflow-auto h-60 rounded-lg my-2 shadow-lg"
-        id="logContainer"
-      >
-        {gLogs?.map((log) => (
-          <p
-            className="p-3 border border-gray-200 rounded-md shadow-md text-lg"
-            key={log + +new Date()}
-          >
-            {log}
-          </p>
-        ))}
+      <div>
+        <h3 className="font-bold text-2xl text-blue-500">
+          Current Player Positions
+        </h3>
+        <p className="flex items-center font-medium text-lg">
+          Player 1 <MdPersonPinCircle size={50} /> :- {playerPos.player1}
+        </p>
+        <p className="flex items-center font-medium text-lg">
+          Player 2 <MdOutlinePersonPinCircle size={50} /> :- {playerPos.player2}
+        </p>
       </div>
-      <h3 className="font-bold text-2xl">Player Positions</h3>
-      <p className="flex items-center font-medium text-lg">
-        Player 1 <MdPersonPinCircle size={50} /> :- {playerPos.player1}
-      </p>
-      <p className="flex items-center font-medium text-lg">
-        Player 2 <MdOutlinePersonPinCircle size={50} /> :- {playerPos.player2}
-      </p>
+      <div>
+        <h3 className="font-bold text-2xl text-green-400">Game Logs</h3>
+        <div
+          className="border border-blue-500 overflow-auto h-60 rounded-lg my-2 shadow-lg"
+          id="logContainer"
+        >
+          {gLogs?.map((log) => (
+            <p
+              className="p-3 border border-gray-200 rounded-md shadow-md text-lg"
+              key={log + +new Date()}
+            >
+              {log}
+            </p>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

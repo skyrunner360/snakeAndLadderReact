@@ -78,10 +78,7 @@ const Dice = () => {
       });
       if (isPlayerFree) {
         setGState({ ...gState, [`player${currPlayer}`]: { move: true } });
-        if (
-          playerPos.player1 + newVal >= 100 ||
-          playerPos.player2 + newVal >= 100
-        ) {
+        if (currPlayerPos >= 100) {
           setGState({ ...gState, global: "over" });
           setGameLog([
             ...gameLog,
@@ -94,10 +91,7 @@ const Dice = () => {
           setDiceVal(0);
         }
       } else {
-        if (
-          playerPos.player1 + newVal >= 100 ||
-          playerPos.player2 + newVal >= 100
-        ) {
+        if (currPlayerPos >= 100) {
           setGState({ ...gState, global: "over" });
           setGameLog([
             ...gameLog,
@@ -138,6 +132,13 @@ const Dice = () => {
             Restart
           </button>
         )}
+        <button
+          className="flex items-center gap-2 rounded-xl border  justify-self-center my-4 p-4 bg-green-300 text-black"
+          onClick={() => window.location.reload()}
+        >
+          <MdRestartAlt size={30} />
+          Restart Game
+        </button>
       </div>
     </div>
   );

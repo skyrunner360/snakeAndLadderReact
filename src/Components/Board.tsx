@@ -14,21 +14,7 @@ const Board = () => {
   const playerPos = useRecoilValue(playerPositions);
 
   return (
-    <div className="flex items-center">
-      <div className="p-2">
-        {playerPos.player1 === 0 && (
-          <div className="p-1 truncate text-nowrap">
-            <MdPersonPinCircle size={50} />
-            Player 1
-          </div>
-        )}
-        {playerPos.player2 === 0 && (
-          <div className="p-1 truncate text-nowrap">
-            <MdOutlinePersonPinCircle size={50} />
-            Player 2
-          </div>
-        )}
-      </div>
+    <div className="flex items-center justify-center">
       <table className="relative shadow-2xl ">
         <img
           src="/Snake_silhouette.svg?url"
