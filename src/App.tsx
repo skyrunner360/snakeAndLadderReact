@@ -17,13 +17,13 @@ function App() {
           <Home />
         ) : (
           <div className="grid grid-cols-3 p-2 ">
-            <div className="border border-red-500 p-2">
+            <div className=" p-2">
               <PlayerInfo />
             </div>
-            <div className="border border-red-500 p-2">
+            <div className=" p-2">
               <Board />
             </div>
-            <div className="border border-red-500 p-2">
+            <div className=" p-2">
               <Dice />
             </div>
           </div>

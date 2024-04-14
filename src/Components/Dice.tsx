@@ -41,15 +41,15 @@ const Dice = () => {
         ...(isPlayerFree && !gState[`player${currPlayer}`].move
           ? [`Player ${currPlayer} is Free to Move!`]
           : []),
+        ...(gState[`player${currPlayer}`].move
+          ? [`Player ${currPlayer} moves to Position ${currPlayerPos}.`]
+          : []),
         ...(snakeBite ? [`Player ${currPlayer} was BITTEN by Snake!`] : []),
         ...(ladderRidden ? [`Player ${currPlayer} RIDES Ladder!`] : []),
         ...(snakeBite
-          ? [`Player ${currPlayer} Moves to ${snakeBite[1]}.`]
+          ? [`Player ${currPlayer} Moves to Position ${snakeBite[1]}.`]
           : ladderRidden
-          ? [`Player ${currPlayer} Moves to ${ladderRidden[1]}.`]
-          : []),
-        ...(gState[`player${currPlayer}`].move
-          ? [`Player ${currPlayer} moves to Position ${currPlayerPos}.`]
+          ? [`Player ${currPlayer} Moves to Position ${ladderRidden[1]}.`]
           : []),
         `Player ${newPlayer}'s Turn.`,
       ]);
@@ -83,7 +83,13 @@ const Dice = () => {
           playerPos.player2 + newVal >= 100
         ) {
           setGState({ ...gState, global: "over" });
-          setGameLog([...gameLog, `Player ${currPlayer} WON!`, "GAME OVER"]);
+          setGameLog([
+            ...gameLog,
+            `Player ${currPlayer} Rolled Dice to ${newVal}.`,
+            `Player ${currPlayer} moves to Position 100.`,
+            `Player ${currPlayer} WON!`,
+            "GAME OVER",
+          ]);
           setPlayerPos({ ...playerPos, [`player${currPlayer}`]: 100 });
           setDiceVal(0);
         }
@@ -93,7 +99,13 @@ const Dice = () => {
           playerPos.player2 + newVal >= 100
         ) {
           setGState({ ...gState, global: "over" });
-          setGameLog([...gameLog, `Player ${currPlayer} WON!`, "GAME OVER"]);
+          setGameLog([
+            ...gameLog,
+            `Player ${currPlayer} Rolled Dice to ${newVal}.`,
+            `Player ${currPlayer} moves to Position 100.`,
+            `Player ${currPlayer} WON!`,
+            "GAME OVER",
+          ]);
           setPlayerPos({ ...playerPos, [`player${currPlayer}`]: 100 });
           setDiceVal(0);
         }
@@ -106,7 +118,7 @@ const Dice = () => {
     <div>
       <div className="flex justify-center content-center items-center">
         <button
-          className={`border-none ${diceRolling && "rolling"} ${
+          className={`border-none  ${diceRolling && "rolling"} ${
             typeOfDice === "crooked" && "text-[#c4de31]"
           }`}
           onClick={rollDice}
@@ -116,7 +128,7 @@ const Dice = () => {
         </button>
       </div>
       <div className="grid">
-        <i className="justify-self-center">Click to Roll Dice</i>
+        <i className="justify-self-center text-xl">Click to Roll Dice</i>
         {gState.global === "over" && (
           <button
             className="flex items-center gap-2 rounded-md border border-dashed border-red-400 justify-self-center my-4 p-4 bg-red-300 text-white"

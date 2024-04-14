@@ -29,7 +29,7 @@ const Board = () => {
           </div>
         )}
       </div>
-      <table className="relative">
+      <table className="relative shadow-2xl ">
         <img
           src="/Snake_silhouette.svg?url"
           style={{ position: "absolute", top: 10, left: 20, zIndex: -1 }}
@@ -113,13 +113,14 @@ const Board = () => {
               {i.map((ij) => {
                 return (
                   <td
-                    className="p-4 border border-blue-400 text-center relative"
+                    className="p-4 border border-blue-400 text-center relative rounded-md text-base font-medium text-red-700"
                     key={ij}
                   >
                     {ij}
                     {playerPos.player1 === ij && (
                       <MdPersonPinCircle
                         size={30}
+                        color="black"
                         style={{
                           position: "absolute",
                           top: 0,
@@ -132,9 +133,11 @@ const Board = () => {
                     {playerPos.player2 === ij && (
                       <MdOutlinePersonPinCircle
                         size={30}
+                        color="black"
                         style={{
                           position: "absolute",
                           top: 0,
+
                           right: 0,
                           transform: "translate(-50,-50)",
                           zIndex: 2,
