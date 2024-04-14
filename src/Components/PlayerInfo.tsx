@@ -8,6 +8,7 @@ const PlayerInfo = () => {
   const gLogs = useRecoilValue(gameLogs);
   useEffect(() => {
     const scrollDiv = document.getElementById("logContainer");
+    // @ts-expect-error for setting Value
     scrollDiv.scrollTop = scrollDiv?.scrollHeight;
   }, [gLogs]);
 

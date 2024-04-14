@@ -29,6 +29,7 @@ const Dice = () => {
     const newVal = typeOfDice === "normal" ? diceRoll() : crookedDiceRoll();
     const newPlayer = currPlayer === 1 ? 2 : 1;
     const isPlayerFree = newVal === 6;
+    // @ts-expect-error for indexing
     const currPlayerPos = playerPos[`player${currPlayer}`] + newVal;
     const snakeBite = snakesArr.find((ar) => ar[0] === currPlayerPos);
     const ladderRidden = laddersArr.find((arr) => arr[0] === currPlayerPos);
@@ -38,9 +39,11 @@ const Dice = () => {
       setGameLog([
         ...gameLog,
         `Player ${currPlayer} Rolled Dice to ${newVal}.`,
+        // @ts-expect-error for indexing
         ...(isPlayerFree && !gState[`player${currPlayer}`].move
           ? [`Player ${currPlayer} is Free to Move!`]
           : []),
+        // @ts-expect-error for indexing
         ...(gState[`player${currPlayer}`].move
           ? [`Player ${currPlayer} moves to Position ${currPlayerPos}.`]
           : []),
@@ -118,6 +121,7 @@ const Dice = () => {
           onClick={rollDice}
           disabled={gState.global === "over"}
         >
+          {/* @ts-expect-error for indexing */}
           {DiceValToIconMap[diceVal]}
         </button>
       </div>
