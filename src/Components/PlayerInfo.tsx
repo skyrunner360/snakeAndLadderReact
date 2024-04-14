@@ -10,7 +10,9 @@ const PlayerInfo = () => {
       <h3>Game Logs</h3>
       <div className="border border-gray-500 overflow-auto h-20">
         {gLogs?.map((log) => (
-          <p className="p-1">{log}</p>
+          <p className="p-1" key={log + +new Date()}>
+            {log}
+          </p>
         ))}
       </div>
       <h3>Player Positions</h3>
