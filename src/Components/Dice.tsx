@@ -7,7 +7,7 @@ import {
   playerPositions,
 } from "../states/BoardStates";
 import { diceValue } from "../states/DiceStates";
-import { diceRoll, DiceValToIconMap, snakesArr } from "../Utils";
+import { diceRoll, DiceValToIconMap, laddersArr, snakesArr } from "../Utils";
 
 const Dice = () => {
   const [diceVal, setDiceVal] = useRecoilState(diceValue);
@@ -22,6 +22,8 @@ const Dice = () => {
     const isPlayerFree = newVal === 6;
     const currPlayerPos = playerPos[`player${currPlayer}`] + newVal;
     const snakeBite = snakesArr.find((ar) => ar[0] === currPlayerPos);
+    const ladderRidden = laddersArr.find((arr) => arr[0] === currPlayerPos);
+    console.log("Snake and Ladder", { snakeBite, currPlayerPos });
     setDiceVal(newVal);
     setGameLog([
       ...gameLog,
@@ -30,7 +32,12 @@ const Dice = () => {
         ? [`Player ${currPlayer} is Free to Move!`]
         : []),
       ...(snakeBite ? [`Player ${currPlayer} was BITTEN by Snake!`] : []),
-      ...(snakeBite ? [`Player ${currPlayer} Moves to ${snakeBite[1]}.`] : []),
+      ...(ladderRidden ? [`Player ${currPlayer} RIDES Ladder!`] : []),
+      ...(snakeBite
+        ? [`Player ${currPlayer} Moves to ${snakeBite[1]}.`]
+        : ladderRidden
+        ? [`Player ${currPlayer} Moves to ${ladderRidden[1]}.`]
+        : []),
       ...(gState[`player${currPlayer}`].move
         ? [`Player ${currPlayer} moves to Position ${currPlayerPos}.`]
         : []),
@@ -44,6 +51,8 @@ const Dice = () => {
           : gState["player1"].move && currPlayer === 1
           ? snakeBite
             ? snakeBite[1]
+            : ladderRidden
+            ? ladderRidden[1]
             : playerPos.player1 + newVal
           : playerPos.player1,
       player2:
@@ -52,6 +61,8 @@ const Dice = () => {
           : gState["player2"].move && currPlayer === 2
           ? snakeBite
             ? snakeBite[1]
+            : ladderRidden
+            ? ladderRidden[1]
             : playerPos.player2 + newVal
           : playerPos.player2,
     });

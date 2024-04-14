@@ -19,4 +19,14 @@ export const DiceValToIconMap = {
 export const diceRoll = () => {
   return Math.trunc(Math.random() * 6 + 1);
 };
-export const snakesArr = [[91, 55], [60, 15], [70, 1], [35.7]];
+export const snakesArr = [
+  [91, 55],
+  [60, 15],
+  [70, 1],
+  [35, 7],
+];
+export const laddersArr = [
+  [18, 40],
+  [33, 51],
+  [76, 98],
+];

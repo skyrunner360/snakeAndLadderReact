@@ -71,6 +71,42 @@ const Board = () => {
           height={100}
           width={150}
         />
+        <img
+          src="/ladder.svg?url"
+          style={{
+            position: "absolute",
+            bottom: "-15px",
+            left: "360px",
+            zIndex: -1,
+            height: "300px",
+            width: "150px",
+            rotate: "40deg",
+          }}
+        />
+        <img
+          src="/ladder.svg?url"
+          style={{
+            position: "absolute",
+            top: "165px",
+            left: "0px",
+            zIndex: -1,
+            height: "300px",
+            width: "170px",
+            rotate: "-40deg",
+          }}
+        />
+        <img
+          src="/ladder.svg?url"
+          style={{
+            position: "absolute",
+            top: "-55px",
+            left: "255px",
+            zIndex: -1,
+            height: "300px",
+            width: "165px",
+            rotate: "40deg",
+          }}
+        />
         {memoizedValue.reverse().map((i, ind) => {
           return (
             <tr className="p-4" key={ind + +new Date()}>
