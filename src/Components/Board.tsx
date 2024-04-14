@@ -93,7 +93,7 @@ const Board = () => {
             rotate: "40deg",
           }}
         />
-        {memoizedValue.reverse().map((i, ind) => {
+        {memoizedValue.map((i, ind) => {
           return (
             <tr className="p-4" key={ind + +new Date()}>
               {i.map((ij) => {
